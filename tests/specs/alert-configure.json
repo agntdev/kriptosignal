@@ -1,19 +1,17 @@
 [
   {
-    "name": "Configure alerts",
+    "name": "Configure alerts shows empty state",
     "steps": [
       {
+        "send": { "callback": "alert:configure" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Manage existing alerts for a coin"
+              "text": "No alerts set yet.\n\nTap 🔔 Set alert to create one."
             }
           }
-        ],
-        "send": {
-          "callback": "alert:configure"
-        }
+        ]
       }
     ]
   }

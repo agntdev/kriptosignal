@@ -1,19 +1,17 @@
 [
   {
-    "name": "Enable morning summary",
+    "name": "Enable morning summary shows time picker",
     "steps": [
       {
+        "send": { "callback": "summary:enable" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Turn on daily price summary"
+              "text": "🌅 Morning summary is currently OFF.\n\nTap to enable a daily market overview of your watchlist."
             }
           }
-        ],
-        "send": {
-          "callback": "summary:enable"
-        }
+        ]
       }
     ]
   }

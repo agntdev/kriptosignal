@@ -1,19 +1,17 @@
 [
   {
-    "name": "Set alert",
+    "name": "Set alert shows coin picker",
     "steps": [
       {
+        "send": { "callback": "alert:create" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Create a new price or percent-change alert"
+              "text": "Which coin do you want an alert for?"
             }
           }
-        ],
-        "send": {
-          "callback": "alert:create"
-        }
+        ]
       }
     ]
   }
