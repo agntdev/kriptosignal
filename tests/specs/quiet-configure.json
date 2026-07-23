@@ -1,19 +1,17 @@
 [
   {
-    "name": "Set quiet hours",
+    "name": "Set quiet hours shows time picker",
     "steps": [
       {
+        "send": { "callback": "quiet:configure" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Define notification suppression intervals"
+              "text": "Set quiet hours to pause notifications during certain times.\n\nCurrent quiet hours: 22:00 — 08:00\n\nChoose when quiet hours start:"
             }
           }
-        ],
-        "send": {
-          "callback": "quiet:configure"
-        }
+        ]
       }
     ]
   }

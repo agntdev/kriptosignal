@@ -1,15 +1,32 @@
 import { Composer } from "grammy";
+import type { Ctx } from "../bot.js";
+import { inlineButton, inlineKeyboard } from "../toolkit/index.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
+const composer = new Composer<Ctx>();
 
-const composer = new Composer();
+function formatWatchlist(watchlist: { ticker: string; name: string }[]): string {
+  if (watchlist.length === 0) {
+    return "Your watchlist is empty.\n\nTap ➕ Add coin to start tracking.";
+  }
+  const list = watchlist.map((i) => `• ${i.ticker} — ${i.name}`).join("\n");
+  return `Your watchlist:\n\n${list}\n\nTap a coin for details, or ➕ Add coin to track more.`;
+}
 
 composer.command("watchlist", async (ctx) => {
-  await ctx.reply("View current watchlist of coins");
+  const text = formatWatchlist(ctx.session.watchlist);
+  const kb = ctx.session.watchlist.length > 0
+    ? inlineKeyboard([[inlineButton("➕ Add coin", "watchlist:add")]])
+    : inlineKeyboard([[inlineButton("➕ Add coin", "watchlist:add")]]);
+  await ctx.reply(text, { reply_markup: kb });
+});
+
+composer.callbackQuery("watchlist:show", async (ctx) => {
+  await ctx.answerCallbackQuery();
+  const text = formatWatchlist(ctx.session.watchlist);
+  const kb = ctx.session.watchlist.length > 0
+    ? inlineKeyboard([[inlineButton("➕ Add coin", "watchlist:add")]])
+    : inlineKeyboard([[inlineButton("➕ Add coin", "watchlist:add")]]);
+  await ctx.reply(text, { reply_markup: kb });
 });
 
 export default composer;

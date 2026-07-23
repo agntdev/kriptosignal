@@ -1,19 +1,17 @@
 [
   {
-    "name": "/price",
+    "name": "/price shows empty state when no coins",
     "steps": [
       {
+        "send": { "text": "/price" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Check price of a specific coin or all tracked coins"
+              "text": "Add some coins to your watchlist first, then check their prices.\n\nTap 📊 Prices from the menu."
             }
           }
-        ],
-        "send": {
-          "text": "/price"
-        }
+        ]
       }
     ]
   }

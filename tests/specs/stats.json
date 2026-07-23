@@ -1,19 +1,17 @@
 [
   {
-    "name": "/stats",
+    "name": "/stats shows aggregated metrics",
     "steps": [
       {
+        "send": { "text": "/stats" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "View aggregated metrics for all users"
+              "text": "📊 Bot statistics\n\nWatchlists: 0\nActive alerts: 0"
             }
           }
-        ],
-        "send": {
-          "text": "/stats"
-        }
+        ]
       }
     ]
   }

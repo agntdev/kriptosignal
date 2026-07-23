@@ -1,19 +1,17 @@
 [
   {
-    "name": "Add to watchlist",
+    "name": "Add to watchlist shows coin picker",
     "steps": [
       {
+        "send": { "callback": "watchlist:add" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Add a new coin to the watchlist"
+              "text": "Pick a coin to add, or type a ticker symbol."
             }
           }
-        ],
-        "send": {
-          "callback": "watchlist:add"
-        }
+        ]
       }
     ]
   }
